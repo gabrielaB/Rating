@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="card-columns">
+    <div *ngFor="let hotel of hotels">
+      <div class="card">
+        <img class="card-img-top" src="{{hotel.img}}" alt="">
+        <div class="card-body">
+          <p class="card-text">{{hotel.name}}</p>
+          <a [routerLink]="['/hotel', hotel.id]" class="btn btn-primary">Виж повече</a>
+        </div>
+        <span class="heading">Рейтинг</span>
+        <div *ngIf="userLogged">
+          <div class="row" id="rating-row">
+            <div *ngFor="let star of ratingStars">
+              <button class="rating-button fa fa-star" (click)="giveRating(star.id, hotel.id)"></button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!userLogged">
+            <div class="row" id="rating-row">
+              <div *ngFor="let star of ratingStars">
+                <button class="rating-button fa fa-star"disabled></button>
+              </div>
+              <p class="average">Влезете в акаунта си, за да поставите рейтинг</p>
+            </div>
+          </div>
+        <!-- <div *ngIf="!userLogged">
+          <span class="heading">Рейтинг</span>
+          <button class="rating-button fa fa-star checked" disabled></button>
+          <button class="rating-button fa fa-star checked" disabled></button>
+          <button class="rating-button fa fa-star checked" disabled></button>
+          <button class="rating-button fa fa-star checked" disabled></button>
+          <button class="rating-button fa fa-star checked" disabled></button>
+        </div> -->
+
+        <p class="average">{{hotel.averageRating}} average based on {{hotel.reviewCount}} reviews.</p>
+        <hr style="border:3px solid #f1f1f1">
+        <div class="side">
+          <div>5 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-5"></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>150</div>
+        </div>
+        <div class="side">
+          <div>4 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-4"></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>63</div>
+        </div>
+        <div class="side">
+          <div>3 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-3"></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>15</div>
+        </div>
+        <div class="side">
+          <div>2 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-2"></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>6</div>
+        </div>
+        <div class="side">
+          <div>1 star</div>
+        </div>
+        <div class="middle">
+          <div class="bar-container">
+            <div class="bar-1"></div>
+          </div>
+        </div>
+        <div class="side right">
+          <div>20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="card-columns">
+    <div *ngFor="let rest of restaurants">
+      <div class="card" >
+        <img class="card-img-top" src="{{rest.img}}" alt="">
+        <div class="card-body">
+          <p class="card-text">{{rest.name}}</p>
+          <a [routerLink]="['/restaurants', rest.id]" class="btn btn-primary">Виж повече</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <router-outlet></router-outlet>
