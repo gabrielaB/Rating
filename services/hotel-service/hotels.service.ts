@@ -15,7 +15,8 @@ export class HotelsService {
         name: "Marinela",
         address: "James Bouirchier 75",
         averageRating:0,
-        reviewCount:0
+        reviewCount:0,
+        rating:0
       },
       {
         id:2,
@@ -23,7 +24,8 @@ export class HotelsService {
         name: "Best Western",
         address: "Jultite paveta",
         averageRating:0,
-        reviewCount:0
+        reviewCount:0,
+        rating:0
       },
       {
         id:3,
@@ -31,7 +33,8 @@ export class HotelsService {
         name: "Radisson",
         address: "Jultite paveta",
         averageRating:0,
-        reviewCount:0
+        reviewCount:0,
+        rating:0
       }
     ]
   };

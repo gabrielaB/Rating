@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelsService } from 'services/hotel-service/hotels.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-hotels',
@@ -36,9 +37,7 @@ export class HotelsComponent implements OnInit {
   ]
 
   constructor(private hotelService: HotelsService) {
-    for (let a of this.averagArray) {
-      console.log(a)
-    }
+
   }
 
   ngOnInit() {
@@ -46,7 +45,13 @@ export class HotelsComponent implements OnInit {
   }
 
   giveRating(starId, hotelId) {
-    this.hotels[hotelId - 1].reviewCount++;
-    this.averagArray['oneStar'] = this.reviewCount;
+    let hotel = this.hotels[hotelId - 1];
+    hotel.reviewCount++;
+    hotel.rating += starId;
+    console.log(hotel.rating)
+    hotel.averageRating = hotel.reviewCount / hotel.rating;
+    $('.rating-button fa fa-star').click(function (e) {
+      $('.rating-button fa fa-star').removeClass("fa fa-star").addClass("fa fa-star checked");
+    });
   }
 }

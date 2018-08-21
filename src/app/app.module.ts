@@ -5,11 +5,13 @@ import { HotelsComponent } from './hotels/hotels.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HotelsDetailsComponent } from './hotels-details/hotels-details.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   { path: 'hotels', component: HotelsComponent },
   { path: 'hotel/:id', component: HotelsDetailsComponent },
-  { path: 'restaurants', component: RestaurantsComponent },  
+  { path: 'restaurants', component: RestaurantsComponent },
+  { path: 'home', component: HomeComponent },      
 ];
 
 @NgModule({
@@ -17,7 +19,8 @@ const appRoutes: Routes = [
     AppComponent,
     HotelsComponent,
     HotelsDetailsComponent,
-    RestaurantsComponent
+    RestaurantsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
