@@ -1,0 +1,14 @@
+<div>
+  <h3>Ето какво бихме Ви препочъли, на база на най-желаните дестинации според нашите потребители</h3>
+  <div class="card-columns">
+    <div *ngFor="let dest of destinations">
+      <div class="card">
+        <img class="card-img-top" src="{{dest.img}}" alt="">
+        <div class="card-body">
+          <p class="card-text">{{dest.name}}</p>
+          <a [routerLink]="['/destinations',dest.id]" class="btn btn-primary">Виж повече</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

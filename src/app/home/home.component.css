@@ -12,12 +12,27 @@
     width: 90%;
     border-radius: 20px;
     left: 4vw;
-    height: 5vw;;
+    height: 3vw;;
 }
 #search-button{
    position: relative;
-   left: 68vw;
    border-radius: 20px;
-   top: 8vw;
-   height: 5vw;
+   height: 3vw;
+   top: 13vw;
+}
+h1{
+    text-align:center;
+    color: darkblue;
+    font-weight: bold;
+    margin-top: 30px;
+
+}
+p{
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    font-size: 17px;
+    font-weight: 600;
+    color: blueviolet;
+
 }

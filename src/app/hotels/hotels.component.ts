@@ -13,6 +13,7 @@ export class HotelsComponent implements OnInit {
   average = 0;
   reviewCount = 0;
   averagArray = [];
+  selectedCity: any = "";
   ratingStars = [
     {
       id: 1,
@@ -42,7 +43,11 @@ export class HotelsComponent implements OnInit {
 
   ngOnInit() {
     this.hotels = this.hotelService.getHotels();
-  }
+  };
+
+  searchCity() {
+    console.log(this.selectedCity)
+  };
 
   giveRating(starId, hotelId) {
     let hotel = this.hotels[hotelId - 1];

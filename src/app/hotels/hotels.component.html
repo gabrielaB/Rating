@@ -1,4 +1,7 @@
 <div class="container">
+    <input id="input" type="search" placeholder="Въведете град" aria-label="Search">
+    <button id="search-button" class="btn btn-success my-2 my-sm-0" type="submit" (click)="searchCity()">Search</button>
+
   <div class="card-columns">
     <div *ngFor="let hotel of hotels">
       <div class="card">
@@ -16,13 +19,13 @@
           </div>
         </div>
         <div *ngIf="!userLogged">
-            <div class="row" id="rating-row">
-              <div *ngFor="let star of ratingStars">
-                <button class="rating-button fa fa-star" disabled id="star-btn"></button>
-              </div>
-              <p class="average">Влезете в акаунта си, за да поставите рейтинг</p>
+          <div class="row" id="rating-row">
+            <div *ngFor="let star of ratingStars">
+              <button class="rating-button fa fa-star" disabled id="star-btn"></button>
             </div>
+            <p class="average">Влезете в акаунта си, за да поставите рейтинг</p>
           </div>
+        </div>
         <!-- <div *ngIf="!userLogged">
           <span class="heading">Рейтинг</span>
           <button class="rating-button fa fa-star checked" disabled></button>
@@ -94,5 +97,3 @@
   </div>
 
 </div>
-
-<router-outlet></router-outlet>
