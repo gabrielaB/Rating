@@ -42,12 +42,12 @@ export class HotelsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.hotels = this.hotelService.getHotels();
-  };
-
-  searchCity() {
-    console.log(this.selectedCity)
-  };
+    this.hotelService
+      .getAllHotels()
+      .subscribe((res) => {
+        console.log(res)
+      });
+  }
 
   giveRating(starId, hotelId) {
     let hotel = this.hotels[hotelId - 1];

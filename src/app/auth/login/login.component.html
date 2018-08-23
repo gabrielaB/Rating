@@ -1,0 +1,13 @@
+<div class="row bg-img">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onSignin(f)" #f="ngForm">
+        <div class="form-group">
+          <input required type="email" id="email" name="email" placeholder="E-mail" ngModel class="form-control">
+        </div>
+         <div class="form-group">
+          <input required type="password" id="password" name="password" placeholder="Парола" ngModel class="form-control">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Вход</button>
+      </form>
+    </div>
+  </div>
