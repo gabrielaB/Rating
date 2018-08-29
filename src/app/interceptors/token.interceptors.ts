@@ -1,33 +1,39 @@
-import {
-    HttpHandler,
-    HttpEvent,
-    HttpRequest,
-    HttpInterceptor
-} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { AuthService } from 'services/auth-service.service';
+// import {
+//     HttpHandler,
+//     HttpEvent,
+//     HttpRequest,
+//     HttpInterceptor
+// } from '@angular/common/http';
+// import { Observable } from 'rxjs';
+// import { Injectable } from '@angular/core';
+// import { AuthService } from 'services/auth-service.service';
 
 
-@Injectable()
-export class TokenInterceptor implements HttpInterceptor {
-    constructor(
-        private authService: AuthService
-    ) { }
+// @Injectable()
+// export class TokenInterceptor implements HttpInterceptor {
+//     constructor(
+//         private authService: AuthService
+//     ) { }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler)
-        : Observable<HttpEvent<any>> {
+//     intercept(req: HttpRequest<any>, next: HttpHandler)
+//         : Observable<HttpEvent<any>> {
+//        if(this.authService.isAuthenticated){
+//         const token = this.authService.getToken();
+//         if (token) {
+//             req = req.clone({
+//                 url: `${req.url}?auth=${token}`
+//             });
+//         } 
+//        }else{
+//         req = req.clone({
+//             url: `${req.url}`
+//         });
+//        }
+        
 
-        const token = this.authService.getToken();
-        if (token) {
-            req = req.clone({
-                url: `${req.url}?auth=${token}`
-            });
-        }
+//         return next.handle(req);
+//     }
 
-        return next.handle(req);
-    }
-
-}
+// }
 
 

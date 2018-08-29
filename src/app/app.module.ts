@@ -19,7 +19,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { Http, HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './interceptors/token.interceptors';
+// import { TokenInterceptor } from './interceptors/token.interceptors';
+import { BarRatingModule } from "ngx-bar-rating";
+import {RatingModule} from "ngx-rating";
 
 
 
@@ -53,6 +55,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    BarRatingModule,
+    RatingModule,
     HttpModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -62,11 +66,7 @@ const appRoutes: Routes = [
       { enableTracing: false }
     )
   ],
-  providers: [AuthService,HttpClient, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true
-  }],
+  providers: [AuthService,HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

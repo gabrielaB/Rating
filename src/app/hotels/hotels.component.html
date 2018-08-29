@@ -1,6 +1,6 @@
 <div class="container">
-    <input id="input" type="search" placeholder="Въведете град" aria-label="Search">
-    <button id="search-button" class="btn btn-success my-2 my-sm-0" type="submit" (click)="searchCity()">Search</button>
+  <!-- <input id="input" type="search" placeholder="Въведете град" aria-label="Search">
+    <button id="search-button" class="btn btn-success my-2 my-sm-0" type="submit" (click)="searchCity()">Search</button> -->
 
   <div class="card-columns">
     <div *ngFor="let hotel of hotels">
@@ -12,31 +12,21 @@
         </div>
         <span class="heading">Рейтинг</span>
         <div *ngIf="userLogged">
-          <div class="row" id="rating-row">
-            <div *ngFor="let star of ratingStars">
-              <button class="rating-button fa fa-star" (click)="giveRating(star.id, hotel.id)"></button>
-            </div>
-          </div>
+          <!-- <rating *ngIf="hotel.isClicked" [(ngModel)]="hotel.rating"   [readonly]="true" ></rating>
+         <rating *ngIf="!hotel.isClicked"  [(ngModel)]="hotel.rating"   (click)="countStars($event,hotel)"></rating>  -->
+          <rating [(ngModel)]="hotel.rating" (click)="countStars($event,hotel)"></rating>
         </div>
-        <div *ngIf="!userLogged">
-          <div class="row" id="rating-row">
-            <div *ngFor="let star of ratingStars">
-              <button class="rating-button fa fa-star" disabled id="star-btn"></button>
-            </div>
-            <p class="average">Влезете в акаунта си, за да поставите рейтинг</p>
-          </div>
-        </div>
-        <!-- <div *ngIf="!userLogged">
-          <span class="heading">Рейтинг</span>
-          <button class="rating-button fa fa-star checked" disabled></button>
-          <button class="rating-button fa fa-star checked" disabled></button>
-          <button class="rating-button fa fa-star checked" disabled></button>
-          <button class="rating-button fa fa-star checked" disabled></button>
-          <button class="rating-button fa fa-star checked" disabled></button>
-        </div> -->
 
-        <p class="average">{{hotel.averageRating}} average based on {{hotel.reviewCount}} reviews.</p>
-        <hr style="border:3px solid #f1f1f1">
+
+        <div *ngIf="!userLogged">
+          <rating [(ngModel)]="hotel.rating" [readonly]="true"></rating>
+          <p class="average">Влезете в акаунта си, за да поставите рейтинг</p>
+        </div>
+
+        <p *ngIf="hotel.review_count !== 0" class="average">{{hotel.average_rating}} average based on {{hotel.review_count}} reviews.</p>
+        <p *ngIf="hotel.review_count === 0" class="average">No reviews yet.</p>
+
+        <!-- <hr style="border:3px solid #f1f1f1">
         <div class="side">
           <div>5 star</div>
         </div>
@@ -91,7 +81,7 @@
         </div>
         <div class="side right">
           <div>20</div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

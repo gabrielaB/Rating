@@ -6,7 +6,6 @@ import { map } from 'rxjs-compat/operator/map';
 import 'rxjs/Rx';
 import { Http } from '@angular/http';
 
-
 const baseUrl = 'https:/rating-f36df.firebaseio.com/hotels/';
 
 @Injectable({
@@ -18,47 +17,20 @@ export class HotelsService {
     private http: HttpClient) { }
 
   getAllHotels() {
-    // if (this.recipesCached) {
-    //   return Observable.create();
-    // }
 
-    const token = this.authService.getToken();
+    return this.http.get(`${baseUrl}/.json`)
+      .map(res => {
+        return Object.values(res)
+      })
+  }
 
-    return this.http.get(`${baseUrl}/.json?auth=${token}`)
-      .map((res: Response) => {
-       console.log(res)
-      });
-}
-  // getHotels(){
-  //   return  [
-  //     {
-  //       id:1,
-  //       img:"../assets/marinela-front.jpg",
-  //       name: "Marinela",
-  //       address: "James Bouirchier 75",
-  //       averageRating:0,
-  //       reviewCount:0,
-  //       rating:0
-  //     },
-  //     {
-  //       id:2,
-  //       img:"../assets/bestwestern-front.jpg",
-  //       name: "Best Western",
-  //       address: "Jultite paveta",
-  //       averageRating:0,
-  //       reviewCount:0,
-  //       rating:0
-  //     },
-  //     {
-  //       id:3,
-  //       img:"../assets/marinela-front.jpg",
-  //       name: "Radisson",
-  //       address: "Jultite paveta",
-  //       averageRating:0,
-  //       reviewCount:0,
-  //       rating:0
-  //     }
-  //   ]
-  // }
-// }
+  getById(id : string) {
+    return this.http.get(`${baseUrl}${id}.json`)
+    .map((res:any) => {return res})
+  }
+
+  editHotel(body) {
+    console.log('boy'+body)
+   return this.http.patch(`${baseUrl}${body.name}/.json`, body);
+  }
 }

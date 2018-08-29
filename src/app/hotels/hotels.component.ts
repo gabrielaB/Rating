@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HotelsService } from 'services/hotel-service/hotels.service';
 import * as $ from 'jquery';
+import { BindingModel } from './binding.model';
 
 @Component({
   selector: 'app-hotels',
@@ -8,55 +9,59 @@ import * as $ from 'jquery';
   styleUrls: ['./hotels.component.css']
 })
 export class HotelsComponent implements OnInit {
-  hotels: any[] = [];
+  @ViewChild('rating') rating;
+  hotels: any;
   userLogged: boolean = true;
   average = 0;
   reviewCount = 0;
   averagArray = [];
   selectedCity: any = "";
-  ratingStars = [
-    {
-      id: 1,
-
-    },
-    {
-      id: 2,
-
-    },
-    {
-      id: 3,
-
-    },
-    {
-      id: 4,
-
-    },
-    {
-      id: 5,
-
-    }
-  ]
+  starsCount: number;
+  isClicked = false;
+  bindingModel = {
+    name: '',
+    img: '',
+    city: '',
+    id: 0,
+    rating: 0,
+    review_count: 0
+  }
+  givenRating= true;
 
   constructor(private hotelService: HotelsService) {
-
   }
 
   ngOnInit() {
     this.hotelService
       .getAllHotels()
       .subscribe((res) => {
-        console.log(res)
+        this.hotels = res;
+        for(let h of this.hotels){
+          if(h.review_count === 0){
+           this.givenRating = false;
+          }else{
+            this.givenRating =true;
+          }
+        }
       });
   }
 
-  giveRating(starId, hotelId) {
-    let hotel = this.hotels[hotelId - 1];
-    hotel.reviewCount++;
-    hotel.rating += starId;
-    console.log(hotel.rating)
-    hotel.averageRating = hotel.reviewCount / hotel.rating;
-    $('.rating-button fa fa-star').click(function (e) {
-      $('.rating-button fa fa-star').removeClass("fa fa-star").addClass("fa fa-star checked");
-    });
+  countStars(event, hotel) {
+    console.log(event.target.title)
+     console.log(hotel.id)
+    this.hotelService.getById(hotel.name)
+      .subscribe(res => {
+       res.rating+= Number(event.target.title);
+      // res.isClicked = true;
+       res.review_count++;
+       res.average_rating = res.rating / res.review_count ;
+       this.hotelService.editHotel(res)
+           .subscribe(res => console.log(res))
+
+      })
+  }
+  changed() {
+    console.log('clicked')
   }
 }
+
